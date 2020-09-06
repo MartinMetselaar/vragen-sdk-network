@@ -2,12 +2,43 @@ import Foundation
 import VragenAPIModels
 import Moya
 
-/// See `AnswerNetworkable` for documentation about the different endpoints.
 public enum AnswerService {
+
+    /// Paginated list of answers.
+    /// - Parameters:
+    ///     - surveyId: id of the survey
+    ///     - questionId: id of the question
+    ///     - page: page index which starts at 1
+    ///     - per: number of items per page
     case list(surveyId: UUID, questionId: UUID, page: Int?, per: Int?)
-    case create(surveyId: UUID, questionId: UUID, input: QuestionCreateRequest)
+
+    /// Create a new answer.
+    /// - Parameters:
+    ///     - surveyId: id of the survey
+    ///     - questionId: id of the question
+    ///     - input: input needed to create an answer
+    case create(surveyId: UUID, questionId: UUID, input: AnswerCreateRequest)
+
+    /// Get a question.
+    /// - Parameters:
+    ///     - surveyId: id of the survey
+    ///     - questionId: id of the question
+    ///     - identifier: id of the answer
     case get(surveyId: UUID, questionId: UUID, identifier: UUID)
-    case update(surveyId: UUID, questionId: UUID, identifier: UUID, input: QuestionCreateRequest)
+
+    /// Update a question.
+    /// - Parameters:
+    ///   - surveyId: id of the survey
+    ///   - questionId: id of the question
+    ///   - identifier: id of the answer
+    ///   - input: input needed to update an answer
+    case update(surveyId: UUID, questionId: UUID, identifier: UUID, input: AnswerCreateRequest)
+
+    /// Delete a question.
+    /// - Parameters:
+    ///     - surveyId: id of the survey
+    ///     - questionId: id of the question
+    ///     - identifier: id of the answer
     case delete(surveyId: UUID, questionId: UUID, identifier: UUID)
 }
 

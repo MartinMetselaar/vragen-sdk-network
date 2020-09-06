@@ -2,8 +2,8 @@ import Foundation
 import Moya
 import VragenAPIModels
 
-/// See `QuestionNetworkable` for documentation about the different endpoints.
-public class QuestionSynchroniseNetwork: QuestionNetworkable {
+/// See `QuestionService` for documentation about the different endpoints.
+public class QuestionSynchroniseNetwork: QuestionSynchroniseNetworkable {
     public let provider: MoyaProvider<QuestionService>
 
     public convenience init(server: URL, token: String) {

@@ -2,13 +2,34 @@ import Foundation
 import VragenAPIModels
 import Moya
 
-/// See `SurveyNetworkable` for documentation about the different endpoints.
 public enum SurveyService {
+
+    /// Paginated list of surveys.
+    /// - Parameters:
+    ///     - page: page index which starts at 1
+    ///     - per: number of items per page
     case list(page: Int?, per: Int?)
+
+    /// Create a new survey.
+    /// - Parameter input: input needed to create a survey
     case create(input: SurveyCreateRequest)
+
+    /// Get a survey.
+    /// - Parameter identifier: id of the survey
     case get(identifier: UUID)
+
+    /// Get a survey which will include all its children (questions and possible answers).
+    /// - Parameter identifier: id of the survey
     case getWithChildren(identifier: UUID)
+
+    /// Update a survey.
+    /// - Parameters:
+    ///     - identifier: id of the survey
+    ///     - input: input needed to update a survey
     case update(identifier: UUID, input: SurveyCreateRequest)
+
+    /// Delete a survey.
+    /// - Parameter identifier: id of the survey
     case delete(identifier: UUID)
 }
 

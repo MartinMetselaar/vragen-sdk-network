@@ -2,8 +2,10 @@ import Foundation
 import VragenAPIModels
 import Moya
 
-/// See `SubmitAnswerNetworkable` for documentation about the different endpoints.
 public enum SubmitAnswerService {
+
+    /// Submit an answer on a question.
+    /// - Parameter input: input needed to submit an answer
     case submit(input: SubmitAnswerRequest)
 }
 

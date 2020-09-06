@@ -2,12 +2,38 @@ import Foundation
 import VragenAPIModels
 import Moya
 
-/// See `QuestionNetworkable` for documentation about the different endpoints.
 public enum QuestionService {
+
+    /// Paginated list of questions.
+    /// - Parameters:
+    ///     - surveyId: id of the survey
+    ///     - page: page index which starts at 1
+    ///     - per: number of items per page
     case list(surveyId: UUID, page: Int?, per: Int?)
+
+    /// Create a new question.
+    /// - Parameters:
+    ///     - surveyId: id of the survey
+    ///     - input: input needed to create a question
     case create(surveyId: UUID, input: QuestionCreateRequest)
+
+    /// Get a question.
+    /// - Parameters:
+    ///     - surveyId: id of the survey
+    ///     - identifier: id of the question
     case get(surveyId: UUID, identifier: UUID)
+
+    /// Update a question.
+    /// - Parameters:
+    ///   - surveyId: id of the survey
+    ///   - identifier: id of the question
+    ///   - input: input needed to update a question
     case update(surveyId: UUID, identifier: UUID, input: QuestionCreateRequest)
+
+    /// Delete a question.
+    /// - Parameters:
+    ///     - surveyId: id of the survey
+    ///     - identifier: id of the question
     case delete(surveyId: UUID, identifier: UUID)
 }
 

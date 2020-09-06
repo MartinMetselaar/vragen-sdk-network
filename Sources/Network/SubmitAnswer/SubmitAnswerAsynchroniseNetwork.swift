@@ -3,7 +3,7 @@ import Moya
 import VragenAPIModels
 
 /// See `SubmitAnswerService` for documentation about the different endpoints.
-public class SubmitAnswerSynchroniseNetwork: SubmitAnswerSynchroniseNetworkable {
+public class SubmitAnswerAsynchroniseNetwork: SubmitAnswerAsynchroniseNetworkable {
     public let provider: MoyaProvider<SubmitAnswerService>
 
     public convenience init(server: URL, token: String) {
@@ -14,8 +14,8 @@ public class SubmitAnswerSynchroniseNetwork: SubmitAnswerSynchroniseNetworkable 
         self.provider = provider
     }
 
-    public func submit(userId: String, surveyId: UUID, questionId: UUID, answerId: UUID) -> Result<SubmitAnswerResponse, MoyaError> {
+    func submit(userId: String, surveyId: UUID, questionId: UUID, answerId: UUID, completion: @escaping (_ result: Result<SubmitAnswerResponse, MoyaError>) -> Void) {
         let input = SubmitAnswerRequest(userId: userId, surveyId: surveyId, questionId: questionId, answerId: answerId)
-        return provider.request(.submit(input: input), to: SubmitAnswerResponse.self)
+        provider.request(.submit(input: input), to: SubmitAnswerResponse.self, completion: completion)
     }
 }

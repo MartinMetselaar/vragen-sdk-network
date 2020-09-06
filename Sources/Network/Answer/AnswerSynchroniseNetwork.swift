@@ -2,8 +2,8 @@ import Foundation
 import Moya
 import VragenAPIModels
 
-/// See `AnswerNetworkable` for documentation about the different endpoints.
-public class AnswerSynchroniseNetwork: AnswerNetworkable {
+/// See `AnswerService` for documentation about the different endpoints.
+public class AnswerSynchroniseNetwork: AnswerSynchroniseNetworkable {
     public let provider: MoyaProvider<AnswerService>
 
     public convenience init(server: URL, token: String) {
@@ -19,7 +19,7 @@ public class AnswerSynchroniseNetwork: AnswerNetworkable {
     }
 
     public func create(surveyId: UUID, questionId: UUID, title: String) -> Result<AnswerResponse, MoyaError> {
-        let input = QuestionCreateRequest(title: title)
+        let input = AnswerCreateRequest(title: title)
         return provider.request(.create(surveyId: surveyId, questionId: questionId, input: input), to: AnswerResponse.self)
     }
 
@@ -28,7 +28,7 @@ public class AnswerSynchroniseNetwork: AnswerNetworkable {
     }
 
     public func update(surveyId: UUID, questionId: UUID, identifier: UUID, title: String) -> Result<AnswerResponse, MoyaError> {
-        let input = QuestionCreateRequest(title: title)
+        let input = AnswerCreateRequest(title: title)
         return provider.request(.update(surveyId: surveyId, questionId: questionId, identifier: identifier, input: input), to: AnswerResponse.self)
     }
 

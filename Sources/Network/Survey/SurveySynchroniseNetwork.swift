@@ -2,8 +2,8 @@ import Foundation
 import Moya
 import VragenAPIModels
 
-/// See `SurveyNetworkable` for documentation about the different endpoints.
-public class SurveySynchroniseNetwork: SurveyNetworkable {
+/// See `SurveyService` for documentation about the different endpoints.
+public class SurveySynchroniseNetwork: SurveySynchroniseNetworkable {
     private let provider: MoyaProvider<SurveyService>
 
     public convenience init(server: URL, token: String) {
