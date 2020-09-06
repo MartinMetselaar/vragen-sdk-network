@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/MartinMetselaar/vragen-api-models.git",
         "state": {
           "branch": null,
-          "revision": "7c83b6df60cc97ed623d38fadffff83887f01adb",
-          "version": "1.3.0"
+          "revision": "125c69aa49733a9894334b49f12cdf0845653f09",
+          "version": "1.4.0"
         }
       }
     ]
