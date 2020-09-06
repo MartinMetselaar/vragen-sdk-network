@@ -4,11 +4,11 @@ import Moya
 
 /// See `QuestionNetworkable` for documentation about the different endpoints.
 public enum QuestionService {
-    case list(surveyId: String, page: Int?, per: Int?)
-    case create(surveyId: String, input: QuestionCreateRequest)
-    case get(surveyId: String, identifier: String)
-    case update(surveyId: String, identifier: String, input: QuestionCreateRequest)
-    case delete(surveyId: String, identifier: String)
+    case list(surveyId: UUID, page: Int?, per: Int?)
+    case create(surveyId: UUID, input: QuestionCreateRequest)
+    case get(surveyId: UUID, identifier: UUID)
+    case update(surveyId: UUID, identifier: UUID, input: QuestionCreateRequest)
+    case delete(surveyId: UUID, identifier: UUID)
 }
 
 extension QuestionService: TargetType {

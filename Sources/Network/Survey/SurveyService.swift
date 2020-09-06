@@ -6,10 +6,10 @@ import Moya
 public enum SurveyService {
     case list(page: Int?, per: Int?)
     case create(input: SurveyCreateRequest)
-    case get(identifier: String)
-    case getWithChildren(identifier: String)
-    case update(identifier: String, input: SurveyCreateRequest)
-    case delete(identifier: String)
+    case get(identifier: UUID)
+    case getWithChildren(identifier: UUID)
+    case update(identifier: UUID, input: SurveyCreateRequest)
+    case delete(identifier: UUID)
 }
 
 extension SurveyService: TargetType {

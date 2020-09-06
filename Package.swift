@@ -16,7 +16,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/Moya/Moya.git", .upToNextMajor(from: "14.0.0")),
-        .package(url: "https://github.com/MartinMetselaar/vragen-api-models.git", from: "1.2.0"),
+        .package(url: "https://github.com/MartinMetselaar/vragen-api-models.git", from: "1.3.0"),
     ],
     targets: [
         .target(name: "VragenSDKNetwork", dependencies: [

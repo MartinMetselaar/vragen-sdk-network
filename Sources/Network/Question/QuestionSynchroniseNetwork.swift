@@ -14,25 +14,25 @@ public class QuestionSynchroniseNetwork: QuestionNetworkable {
         self.provider = provider
     }
 
-    public func list(surveyId: String, page: Int?, per: Int?) -> Result<Page<QuestionResponse>, MoyaError> {
+    public func list(surveyId: UUID, page: Int?, per: Int?) -> Result<Page<QuestionResponse>, MoyaError> {
         return provider.request(.list(surveyId: surveyId, page: page, per: per), to: Page<QuestionResponse>.self)
     }
 
-    public func create(surveyId: String, title: String) -> Result<QuestionResponse, MoyaError> {
+    public func create(surveyId: UUID, title: String) -> Result<QuestionResponse, MoyaError> {
         let input = QuestionCreateRequest(title: title)
         return provider.request(.create(surveyId: surveyId, input: input), to: QuestionResponse.self)
     }
 
-    public func get(surveyId: String, identifier: String) -> Result<QuestionResponse, MoyaError> {
+    public func get(surveyId: UUID, identifier: UUID) -> Result<QuestionResponse, MoyaError> {
         return provider.request(.get(surveyId: surveyId, identifier: identifier), to: QuestionResponse.self)
     }
 
-    public func update(surveyId: String, identifier: String, title: String) -> Result<QuestionResponse, MoyaError> {
+    public func update(surveyId: UUID, identifier: UUID, title: String) -> Result<QuestionResponse, MoyaError> {
         let input = QuestionCreateRequest(title: title)
         return provider.request(.update(surveyId: surveyId, identifier: identifier, input: input), to: QuestionResponse.self)
     }
 
-    public func delete(surveyId: String, identifier: String) -> Result<EmptyResponse, MoyaError> {
+    public func delete(surveyId: UUID, identifier: UUID) -> Result<EmptyResponse, MoyaError> {
         return provider.request(.delete(surveyId: surveyId, identifier: identifier), to: EmptyResponse.self)
     }
 }

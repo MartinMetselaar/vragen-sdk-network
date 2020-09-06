@@ -14,11 +14,11 @@ final class QuestionSynchroniseNetworkTests: XCTestCase {
         sut = QuestionSynchroniseNetwork(fileName: get_api_v1_surveys_identifier_questions_200)
 
         // When
-        let result = sut.list(surveyId: "", page: 0, per: 0)
+        let result = sut.list(surveyId: UUID(), page: 0, per: 0)
 
         // Then
         let expected = [
-            QuestionResponse(id: "2B2A8838-9C35-4672-B873-5CD58B39395C", title: "This is a question")
+            QuestionResponse(id: UUID(uuidString: "2B2A8838-9C35-4672-B873-5CD58B39395C")!, title: "This is a question")
         ]
         switch result {
             case .success(let page):
@@ -35,10 +35,10 @@ final class QuestionSynchroniseNetworkTests: XCTestCase {
         sut = QuestionSynchroniseNetwork(fileName: post_api_v1_surveys_identifier_questions_200)
 
         // When
-        let result = sut.create(surveyId: "", title: "")
+        let result = sut.create(surveyId: UUID(), title: "")
 
         // Then
-        let expected = QuestionResponse(id: "2B2A8838-9C35-4672-B873-5CD58B39395C", title: "Created question")
+        let expected = QuestionResponse(id: UUID(uuidString: "2B2A8838-9C35-4672-B873-5CD58B39395C")!, title: "Created question")
         assert(result, contains: expected)
     }
 
@@ -49,10 +49,10 @@ final class QuestionSynchroniseNetworkTests: XCTestCase {
         sut = QuestionSynchroniseNetwork(fileName: get_api_v1_surveys_identifier_questions_identifier_200)
 
         // When
-        let result = sut.get(surveyId: "", identifier: "")
+        let result = sut.get(surveyId: UUID(), identifier: UUID())
 
         // Then
-        let expected = QuestionResponse(id: "2B2A8838-9C35-4672-B873-5CD58B39395C", title: "Get question")
+        let expected = QuestionResponse(id: UUID(uuidString: "2B2A8838-9C35-4672-B873-5CD58B39395C")!, title: "Get question")
         assert(result, contains: expected)
     }
 
@@ -63,10 +63,10 @@ final class QuestionSynchroniseNetworkTests: XCTestCase {
         sut = QuestionSynchroniseNetwork(fileName: post_api_v1_surveys_identifier_questions_identifier_200)
 
         // When
-        let result = sut.update(surveyId: "", identifier: "", title: "")
+        let result = sut.update(surveyId: UUID(), identifier: UUID(), title: "")
 
         // Then
-        let expected = QuestionResponse(id: "2B2A8838-9C35-4672-B873-5CD58B39395C", title: "Updated question")
+        let expected = QuestionResponse(id: UUID(uuidString: "2B2A8838-9C35-4672-B873-5CD58B39395C")!, title: "Updated question")
         assert(result, contains: expected)
     }
 
@@ -77,7 +77,7 @@ final class QuestionSynchroniseNetworkTests: XCTestCase {
         sut = QuestionSynchroniseNetwork(fileName: delete_api_v1_surveys_identifier_questions_identifier_200)
 
         // When
-        let result = sut.delete(surveyId: "", identifier: "")
+        let result = sut.delete(surveyId: UUID(), identifier: UUID())
 
         // Then
         assert(result, contains: EmptyResponse())

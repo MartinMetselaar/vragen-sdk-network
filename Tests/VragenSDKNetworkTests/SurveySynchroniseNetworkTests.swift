@@ -18,8 +18,8 @@ final class SurveySynchroniseNetworkTests: XCTestCase {
 
         // Then
         let expected = [
-            SurveyResponse(id: "2B2A8838-9C35-4672-B873-5CD58B39395C", title: "This is a survey"),
-            SurveyResponse(id: "8007F5B7-592A-4F59-9C44-0694CCA46386", title: "And another survey"),
+            SurveyResponse(id: UUID(uuidString: "2B2A8838-9C35-4672-B873-5CD58B39395C")!, title: "This is a survey"),
+            SurveyResponse(id: UUID(uuidString: "8007F5B7-592A-4F59-9C44-0694CCA46386")!, title: "And another survey"),
         ]
         switch result {
             case .success(let page):
@@ -39,7 +39,7 @@ final class SurveySynchroniseNetworkTests: XCTestCase {
         let result = sut.create(title: "")
 
         // Then
-        let expected = SurveyResponse(id: "2B2A8838-9C35-4672-B873-5CD58B39395C", title: "Created survey")
+        let expected = SurveyResponse(id: UUID(uuidString: "2B2A8838-9C35-4672-B873-5CD58B39395C")!, title: "Created survey")
         assert(result, contains: expected)
     }
 
@@ -50,10 +50,10 @@ final class SurveySynchroniseNetworkTests: XCTestCase {
         sut = SurveySynchroniseNetwork(fileName: get_api_v1_surveys_identifier_200)
 
         // When
-        let result = sut.get(identifier: "")
+        let result = sut.get(identifier: UUID())
 
         // Then
-        let expected = SurveyResponse(id: "2B2A8838-9C35-4672-B873-5CD58B39395C", title: "Get survey")
+        let expected = SurveyResponse(id: UUID(uuidString: "2B2A8838-9C35-4672-B873-5CD58B39395C")!, title: "Get survey")
         assert(result, contains: expected)
     }
 
@@ -64,19 +64,19 @@ final class SurveySynchroniseNetworkTests: XCTestCase {
         sut = SurveySynchroniseNetwork(fileName: get_api_v1_surveys_identifier_children_200)
 
         // When
-        let result = sut.getWithChildren(identifier: "")
+        let result = sut.getWithChildren(identifier: UUID())
 
         // Then
         let expected = SurveyWithQuestionsResponse(
-            id: "2B2A8838-9C35-4672-B873-5CD58B39395C",
+            id: UUID(uuidString: "2B2A8838-9C35-4672-B873-5CD58B39395C")!,
             title: "This is a survey with children",
             questions: [
                 QuestionWithAnswersResponse(
-                    id: "F4DC0B2B-3480-4FFD-9952-6BBE136A9A67",
+                    id: UUID(uuidString: "F4DC0B2B-3480-4FFD-9952-6BBE136A9A67")!,
                     title: "Question 1",
                     answers: [
-                        AnswerResponse(id: "55393905-E1E0-40F3-9D26-740F9BAE44F4", title: "Answer 1"),
-                        AnswerResponse(id: "BCAB7533-86C0-424D-ABA0-7968A90F246B", title: "Answer 2"),
+                        AnswerResponse(id: UUID(uuidString: "55393905-E1E0-40F3-9D26-740F9BAE44F4")!, title: "Answer 1"),
+                        AnswerResponse(id: UUID(uuidString: "BCAB7533-86C0-424D-ABA0-7968A90F246B")!, title: "Answer 2"),
                 ]),
             ]
         )
@@ -90,10 +90,10 @@ final class SurveySynchroniseNetworkTests: XCTestCase {
         sut = SurveySynchroniseNetwork(fileName: post_api_v1_surveys_identifier_200)
 
         // When
-        let result = sut.update(identifier: "", title: "")
+        let result = sut.update(identifier: UUID(), title: "")
 
         // Then
-        let expected = SurveyResponse(id: "2B2A8838-9C35-4672-B873-5CD58B39395C", title: "Updated survey")
+        let expected = SurveyResponse(id: UUID(uuidString: "2B2A8838-9C35-4672-B873-5CD58B39395C")!, title: "Updated survey")
         assert(result, contains: expected)
     }
 
@@ -104,7 +104,7 @@ final class SurveySynchroniseNetworkTests: XCTestCase {
         sut = SurveySynchroniseNetwork(fileName: delete_api_v1_surveys_identifier_200)
 
         // When
-        let result = sut.delete(identifier: "")
+        let result = sut.delete(identifier: UUID())
 
         // Then
         assert(result, contains: EmptyResponse())
