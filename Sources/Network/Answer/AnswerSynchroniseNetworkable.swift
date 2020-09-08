@@ -3,7 +3,7 @@ import Moya
 import VragenAPIModels
 
 /// See `AnswerService` for documentation about the different endpoints.
-protocol AnswerSynchroniseNetworkable {
+public protocol AnswerSynchroniseNetworkable {
 
     /// Paginated list of answers.
     func list(surveyId: UUID, questionId: UUID, page: Int?, per: Int?) -> Result<Page<AnswerResponse>, MoyaError>

@@ -3,7 +3,7 @@ import Moya
 import VragenAPIModels
 
 /// See `SurveyService` for documentation about the different endpoints.
-protocol SurveySynchroniseNetworkable {
+public protocol SurveySynchroniseNetworkable {
 
     /// Paginated list of surveys.
     func list(page: Int?, per: Int?) -> Result<Page<SurveyResponse>, MoyaError>

@@ -14,7 +14,7 @@ public class SubmitAnswerAsynchroniseNetwork: SubmitAnswerAsynchroniseNetworkabl
         self.provider = provider
     }
 
-    func submit(userId: String, surveyId: UUID, questionId: UUID, answerId: UUID, completion: @escaping (_ result: Result<SubmitAnswerResponse, MoyaError>) -> Void) {
+    public func submit(userId: String, surveyId: UUID, questionId: UUID, answerId: UUID, completion: @escaping (_ result: Result<SubmitAnswerResponse, MoyaError>) -> Void) {
         let input = SubmitAnswerRequest(userId: userId, surveyId: surveyId, questionId: questionId, answerId: answerId)
         provider.request(.submit(input: input), to: SubmitAnswerResponse.self, completion: completion)
     }
