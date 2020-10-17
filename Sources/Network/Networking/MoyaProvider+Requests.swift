@@ -39,4 +39,25 @@ extension MoyaProvider {
 
         return response
     }
+
+    /// Request that maps the response to a string when the request is successful while doing this **synchronously** with the use of `DispatchSemaphore`.
+    func request(_ target: Target, progress: ProgressBlock? = .none) -> Result<String, MoyaError> {
+        let semaphore = DispatchSemaphore(value: 0)
+
+        var response: Result<String, MoyaError> = .failure(MoyaError.underlying(RequestNeverExecutedError(), nil))
+        request(target, callbackQueue: .global(qos: .background)) { (result) in
+            defer { semaphore.signal() }
+            switch result {
+                case .failure(let error):
+                    response = .failure(error)
+                case .success(let value):
+                    let responseString = String(data: value.data, encoding: .utf8) ?? ""
+                    response = .success(responseString)
+            }
+        }
+
+        semaphore.wait()
+
+        return response
+    }
 }

@@ -109,6 +109,24 @@ final class SurveySynchroniseNetworkTests: XCTestCase {
         // Then
         assert(result, contains: EmptyResponse())
     }
+
+    // MARK: - Results
+
+    func test_results() {
+        // Given
+        sut = SurveySynchroniseNetwork(fileName: get_api_v1_surveys_identifier_results_200)
+
+        // When
+        let result = sut.results(identifier: UUID())
+
+        // Then
+        switch result {
+            case .success(let value):
+                XCTAssertEqual(value, "userId,question,answer\nuser-id-123,Question 1,Answer 1\n")
+            case .failure(let error):
+                XCTFail("An error was thrown: \(error)")
+        }
+    }
 }
 
 extension SurveySynchroniseNetwork {

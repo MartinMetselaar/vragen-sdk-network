@@ -31,6 +31,10 @@ public enum SurveyService {
     /// Delete a survey.
     /// - Parameter identifier: id of the survey
     case delete(identifier: UUID)
+
+    /// Retrieve results of a survey.
+    /// - Parameter identifier: id of the survey
+    case results(identifier: UUID)
 }
 
 extension SurveyService: TargetType {
@@ -42,12 +46,14 @@ extension SurveyService: TargetType {
                 return "/api/v1/surveys/\(identifier)"
             case .getWithChildren(let identifier):
                 return "/api/v1/surveys/\(identifier)/children"
+            case .results(let identifier):
+                return "/api/v1/surveys/\(identifier)/results"
         }
     }
 
     public var method: Moya.Method {
         switch self {
-            case .list, .get, .getWithChildren:
+            case .list, .get, .getWithChildren, .results:
                 return .get
             case .create, .update:
                 return .post

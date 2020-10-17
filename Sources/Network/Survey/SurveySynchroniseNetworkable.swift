@@ -23,4 +23,8 @@ public protocol SurveySynchroniseNetworkable {
     /// Delete a survey.
     /// - Returns: when successful it returns an empty Data response
     func delete(identifier: UUID) -> Result<EmptyResponse, MoyaError>
+
+    /// Retrieve the results of the survey.
+    /// - Returns: the results of the survey in a csv string
+    func results(identifier: UUID) -> Result<String, MoyaError>
 }

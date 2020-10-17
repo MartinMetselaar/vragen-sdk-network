@@ -39,4 +39,8 @@ public class SurveySynchroniseNetwork: SurveySynchroniseNetworkable {
     public func delete(identifier: UUID) -> Result<EmptyResponse, MoyaError> {
         return provider.request(.delete(identifier: identifier), to: EmptyResponse.self)
     }
+
+    public func results(identifier: UUID) -> Result<String, MoyaError> {
+        return provider.request(.results(identifier: identifier))
+    }
 }
